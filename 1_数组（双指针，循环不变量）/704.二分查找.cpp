@@ -46,11 +46,36 @@
 // @lc code=start
 #include <vector>
 using namespace std;
+class Solution
+{
+public:
+  int search(vector<int> &nums, int target)
+  {
+    if (nums.size() == 0)
+      return -1;
+    int left = 0, right = nums.size() - 1;
+    while (left <= right)
+    {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] == target)
+        return mid;
+      else if (nums[mid] < target)
+        left = mid + 1;
+      else
+        right = mid - 1;
+    }
+    return -1;
+  }
+};
+// @lc code=end
+
 // 大家写二分法经常写乱，主要是因为对区间的定义没有想清楚，区间的定义就是不变量。要在二分查找的过程中，
 // 保持不变量，就是在while寻找中每一次边界的处理都要坚持根据区间的定义来操作，这就是循环不变量规则。
-class Solution {
+class Solution
+{
 public:
-  int search(vector<int> &nums, int target) {
+  int search(vector<int> &nums, int target)
+  {
     int n = nums.size();
     // 第一种写法，我们定义 target 是在一个在左闭右闭的区间里，也就是[left,
     // right] （这个很重要非常重要）
@@ -60,16 +85,21 @@ public:
     // 所以使用<= if (nums[middle] > target) right 要赋值为 middle - 1，
     // 因为当前这个nums[middle]一定不是target，
     // 那么接下来要查找的左区间结束下标位置就是 middle + 1
-    //若不进行这种+-1操作，可能当left = mid时卡住
+    // 若不进行这种+-1操作，可能当left = mid时卡住
     // 或right = mid卡住（当right = left = mid时死循环）
-    while (left <= right) {
+    while (left <= right)
+    {
       int mid = (left + right) / 2;
-      if (nums[mid] == target) {
+      if (nums[mid] == target)
+      {
         return mid;
       }
-      if (nums[mid] < target) {
+      if (nums[mid] < target)
+      {
         left = mid + 1;
-      } else {
+      }
+      else
+      {
         right = mid - 1;
       }
     }
@@ -77,9 +107,11 @@ public:
   }
 };
 
-class Solution {
+class Solution
+{
 public:
-  int search(vector<int> &nums, int target) {
+  int search(vector<int> &nums, int target)
+  {
     int n = nums.size();
     // 第二种写法，我们定义 target
     // 是在一个在左闭右开的区间里，也就是[left,right)
@@ -89,18 +121,22 @@ public:
     // 所以使用<= if (nums[middle] > target) right 要赋值为
     // middle，开区间把middle排除了，
     // 那么接下来要查找的左区间结束下标位置就是middle + 1
-    while (left < right) {
+    while (left < right)
+    {
       int mid = (left + right) / 2;
-      if (nums[mid] == target) {
+      if (nums[mid] == target)
+      {
         return mid;
       }
-      if (nums[mid] < target) {
+      if (nums[mid] < target)
+      {
         left = mid + 1;
-      } else {
+      }
+      else
+      {
         right = mid;
       }
     }
     return -1;
   }
 };
-// @lc code=end
