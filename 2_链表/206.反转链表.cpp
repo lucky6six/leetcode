@@ -55,15 +55,15 @@
  *
  *
  */
-
+struct ListNode {
+  int val;
+  ListNode *next;
+  ListNode() : val(0), next(nullptr) {}
+  ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 // @lc code=start
-// struct ListNode {
-//   int val;
-//   ListNode *next;
-//   ListNode() : val(0), next(nullptr) {}
-//   ListNode(int x) : val(x), next(nullptr) {}
-//   ListNode(int x, ListNode *next) : val(x), next(next) {}
-// };
+
 // class Solution {
 // public:
 //   ListNode *reverseList(ListNode *head) {
@@ -83,9 +83,9 @@
 //   }
 // };
 
-//递归方式
+// 递归方式
 class Solution {
-  //多品味一下递归的写法
+  // 多品味一下递归的写法
 public:
   ListNode *reverse(ListNode *pre, ListNode *cur) {
     if (cur) {
@@ -93,7 +93,7 @@ public:
       cur->next = pre;
       pre = cur;
       cur = tmp;
-      //记得return
+      // 记得return
       return reverse(pre, cur);
     }
     return pre;
