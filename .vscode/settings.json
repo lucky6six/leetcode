@@ -49,6 +49,8 @@
         "__tree": "cpp",
         "deque": "cpp",
         "set": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "stack": "cpp",
+        "condition_variable": "cpp"
     }
 }
